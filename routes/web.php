@@ -5,6 +5,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShoppingController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,12 +24,6 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     
     //route resource article
     Route::resource('articles',ArticleController::class);
-
-});
-
-// route shopping 
-Route::middleware(['auth', 'verified'])->group(function () {
-    
 });
 
 // route resource article untuk user biasa
@@ -41,9 +36,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // route middleware yang hanya boleh diakses jika user sudah login
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [Controllers\ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [Controllers\ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');    
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');    
 });
 
 require __DIR__.'/auth.php';
