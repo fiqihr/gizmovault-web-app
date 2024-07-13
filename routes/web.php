@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShoppingController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',Controllers\HomeController::class)->name('home'); 
+Route::get('/',HomeController::class)->name('home'); 
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');    
